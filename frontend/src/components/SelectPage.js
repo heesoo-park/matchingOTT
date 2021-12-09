@@ -25,18 +25,16 @@ export default function SelectPage() {
     setUsername(localStorage.getItem("name"));
     console.log(typeof username);
     axios
-    .post("http://localhost:8000/api/select/", {
-      userID:username,
-      OTTname:OTTname
-    })
-    .then(function (res) {
-      console.log(res);
-    });
+      .post("http://localhost:8000/api/select/", {
+        userID: username,
+        OTTname: OTTname,
+      })
+      .then(function (res) {
+        console.log(res);
+      });
 
-    // window.location.replace("/Grouppage");
+    window.location.replace("/Grouppage");
   };
-
-
 
   return (
     <div>

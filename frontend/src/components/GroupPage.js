@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import axios from "axios";
 
 export default function GroupPage() {
   const [numOfUser, setNumOfUser] = useState(0);
   const [groupid, setGroupid] = useState("");
   const [OTTname, setOTTname] = useState("");
   const [username, setUsername] = useState([]);
+
+  useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem("name")));
+
+    axios
+      .get("http://localhost:8000/api/select/", {
+        params: {
+          userID: JSON.parse(localStorage.getItem("name")),
+        },
+      })
+      .then(function (res) {
+        setUsername(username.concat(res.data));
+        console.log(username);
+      });
+    return () => {
+      console.log("컴포넌트가 화면에서 사라짐");
+      setUsername([]);
+      console.log(username);
+    };
+  }, []);
 
   const handleFormGroupOut = (event) => {
     event.preventDefault();

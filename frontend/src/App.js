@@ -19,7 +19,7 @@ export default function App() {
   );
   const [isAttend, setisAttend] = useState();
   var checkUser = localStorage.getItem("name");
-  console.log(is_active);
+  //console.log(is_active);
 
   useEffect(() => {
     if (checkUser != null) {
