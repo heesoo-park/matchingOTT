@@ -34,20 +34,11 @@ const LoginForm = ({ submitForm }) => {
           setErrors(validation(values));
           setDataIsCorret(true);
           window.location.replace("/");
-        } else {
-          console.log("잘못된 로그인입니다.");
-          window.location.replace("/login");
         }
+      })
+      .catch((error) => {
+        window.location.replace("/login");
       });
-
-    // if (check == 200) {
-    //   localStorage.setItem("name", JSON.stringify(values.ID));
-    //   setErrors(validation(values));
-    //   setDataIsCorret(true);
-    //   window.location.replace("/");
-    // } else {
-    //   window.location.replace("/login");
-    // }
   };
 
   useEffect(() => {

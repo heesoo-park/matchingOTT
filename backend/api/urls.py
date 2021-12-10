@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import GroupView, DetailGroupView, groupOut, selectOTT, getGroup
+from .views import GroupView, DetailGroupView, selectOTT, getGroup
 
 urlpatterns = [
     path('group/<int:id>/', DetailGroupView.as_view()),
