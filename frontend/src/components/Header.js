@@ -16,6 +16,10 @@ export default function Header({ LoginState, AttendState }) {
     event.preventDefault();
     localStorage.removeItem("name");
     localStorage.removeItem("OTT");
+    localStorage.removeItem("user1");
+    localStorage.removeItem("user2");
+    localStorage.removeItem("user3");
+    localStorage.removeItem("user4");
     window.location.replace("/");
   };
 

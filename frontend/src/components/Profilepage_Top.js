@@ -44,10 +44,19 @@ if (name != null) {
 }
 
 class ProfilePage_Top extends Component {
+  componentDidMount() {
+    console.log(localStorage.getItem("name"));
+  }
+
   render() {
     const handleFormLogout = (event) => {
       event.preventDefault();
       localStorage.removeItem("name");
+      localStorage.removeItem("OTT");
+      localStorage.removeItem("user1");
+      localStorage.removeItem("user2");
+      localStorage.removeItem("user3");
+      localStorage.removeItem("user4");
       window.location.replace("/");
     };
 
@@ -75,7 +84,7 @@ class ProfilePage_Top extends Component {
                 <h2>현재 사용중인 OTT</h2>
               </div>
               <div>
-                {customer.OTTName === "NETFLIX" ? (
+                {JSON.parse(localStorage.getItem("OTT")) === "NETFLIX" ? (
                   <img
                     style={{ display: "inline-block" }}
                     width={400 / 3}
@@ -83,7 +92,7 @@ class ProfilePage_Top extends Component {
                     src={OTTLogoImage.NETFLIX}
                     alt="NETFLIX Logo Image"
                   />
-                ) : customer.OTTName === "WATCHA" ? (
+                ) : JSON.parse(localStorage.getItem("OTT")) === "WATCHA" ? (
                   <img
                     style={{ display: "inline-block" }}
                     width="80%"
@@ -91,7 +100,7 @@ class ProfilePage_Top extends Component {
                     src={OTTLogoImage.WATCHA}
                     alt="WATCHA Logo Image"
                   />
-                ) : customer.OTTName === "WAVVE" ? (
+                ) : JSON.parse(localStorage.getItem("OTT")) === "WAVVE" ? (
                   <img
                     style={{ display: "inline-block" }}
                     width={350}
