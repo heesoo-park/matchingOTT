@@ -9,6 +9,7 @@ const LoginForm = ({ submitForm }) => {
   });
   const [errors, setErrors] = useState({});
   const [dataIsCorrect, setDataIsCorret] = useState(false);
+  let check = 0;
   const handleChange = (event) => {
     setValues({
       ...values,
@@ -24,12 +25,29 @@ const LoginForm = ({ submitForm }) => {
         password: values.password,
       })
       .then(function (res) {
-        console.log(res);
+        console.log(res.status);
+        check = parseInt(res.status);
+        console.log(check);
+
+        if (check == 200) {
+          localStorage.setItem("name", JSON.stringify(values.ID));
+          setErrors(validation(values));
+          setDataIsCorret(true);
+          window.location.replace("/");
+        } else {
+          console.log("잘못된 로그인입니다.");
+          window.location.replace("/login");
+        }
       });
-    localStorage.setItem("name", JSON.stringify(values.ID));
-    setErrors(validation(values));
-    setDataIsCorret(true);
-    window.location.replace("/");
+
+    // if (check == 200) {
+    //   localStorage.setItem("name", JSON.stringify(values.ID));
+    //   setErrors(validation(values));
+    //   setDataIsCorret(true);
+    //   window.location.replace("/");
+    // } else {
+    //   window.location.replace("/login");
+    // }
   };
 
   useEffect(() => {
@@ -37,6 +55,7 @@ const LoginForm = ({ submitForm }) => {
       submitForm(true);
     }
   }, [errors]);
+
   return (
     <div className="container">
       <div className="app-wrapper">

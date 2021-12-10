@@ -13,7 +13,7 @@ export default function GroupPage() {
     console.log(JSON.parse(localStorage.getItem("name")));
 
     axios
-      .get("http://localhost:8000/api/select/", {
+      .get("http://localhost:8000/api/getGroupMember/", {
         params: {
           userID: JSON.parse(localStorage.getItem("name")),
         },
@@ -32,6 +32,13 @@ export default function GroupPage() {
   const handleFormGroupOut = (event) => {
     event.preventDefault();
     localStorage.removeItem("OTT");
+    axios
+      .post("http://localhost:8000/api/groupOut/", {
+        userID: username,
+      })
+      .then(function (res) {
+        console.log(res);
+      });
     window.location.replace("/");
   };
 
