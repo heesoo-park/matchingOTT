@@ -19,8 +19,9 @@ export default function GroupPage() {
         },
       })
       .then(function (res) {
-        setUsername(username.concat(res.data));
-        console.log(username);
+        // setUsername(username.concat(res.data));
+        // console.log(username);
+        console.log(res.data);
       });
     return () => {
       console.log("컴포넌트가 화면에서 사라짐");
@@ -32,13 +33,8 @@ export default function GroupPage() {
   const handleFormGroupOut = (event) => {
     event.preventDefault();
     localStorage.removeItem("OTT");
-    axios
-      .post("http://localhost:8000/api/groupOut/", {
-        userID: username,
-      })
-      .then(function (res) {
-        console.log(res);
-      });
+    console.log(JSON.parse(localStorage.getItem("name")));
+
     window.location.replace("/");
   };
 
