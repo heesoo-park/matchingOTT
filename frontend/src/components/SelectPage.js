@@ -132,10 +132,10 @@ export default function SelectPage() {
                 </tr>
                 <tr className="ott-name">
                   <td>
-                    <b>NETFLIX</b>
+                    <b>WAVVE</b>
                   </td>
                   <td>
-                    <b>WATCHA</b>
+                    <b>TVING</b>
                   </td>
                 </tr>
               </tbody>
