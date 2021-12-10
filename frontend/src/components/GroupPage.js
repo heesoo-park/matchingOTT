@@ -7,11 +7,14 @@ export default function GroupPage() {
   const [numOfUser, setNumOfUser] = useState(0);
   const [groupid, setGroupid] = useState("");
   const [OTTname, setOTTname] = useState("");
-  const [username, setUsername] = useState([]);
+  let username1 = "";
+  let username2 = "";
+  let username3 = "";
+  let username4 = "";
 
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem("name")));
-
+    setOTTname(JSON.parse(localStorage.getItem("OTT")));
     axios
       .get("http://localhost:8000/api/getGroupMember/", {
         params: {
@@ -19,15 +22,14 @@ export default function GroupPage() {
         },
       })
       .then(function (res) {
-        // setUsername(username.concat(res.data));
-        // console.log(username);
         console.log(res.data);
+        console.log(username1);
+        window.localStorage.setItem("user1", JSON.stringify(res.data.user1ID));
+        window.localStorage.setItem("user2", JSON.stringify(res.data.user2ID));
+        window.localStorage.setItem("user3", JSON.stringify(res.data.user3ID));
+        window.localStorage.setItem("user4", JSON.stringify(res.data.user4ID));
       });
-    return () => {
-      console.log("컴포넌트가 화면에서 사라짐");
-      setUsername([]);
-      console.log(username);
-    };
+    return () => {};
   }, []);
 
   const handleFormGroupOut = (event) => {
@@ -62,7 +64,7 @@ export default function GroupPage() {
               >
                 <tr className="title">
                   <th>그룹원 정보</th>
-                  <th>넷플릭스</th>
+                  <th>{OTTname}</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,7 +87,7 @@ export default function GroupPage() {
                       backgroundColor: "#eceaea",
                     }}
                   >
-                    username1
+                    {JSON.parse(window.localStorage.getItem("user1"))}
                   </td>
                 </tr>
                 <tr className="table-row">
@@ -99,7 +101,7 @@ export default function GroupPage() {
                       alt="프로필 사진"
                     />
                   </td>
-                  <td>username2</td>
+                  <td>{JSON.parse(window.localStorage.getItem("user2"))}</td>
                 </tr>
                 <tr className="table-row">
                   <td
@@ -121,7 +123,7 @@ export default function GroupPage() {
                       backgroundColor: "#eceaea",
                     }}
                   >
-                    username3
+                    {JSON.parse(window.localStorage.getItem("user3"))}
                   </td>
                 </tr>
                 <tr className="table-row">
@@ -135,7 +137,7 @@ export default function GroupPage() {
                       alt="프로필 사진"
                     />
                   </td>
-                  <td>username4</td>
+                  <td>{JSON.parse(window.localStorage.getItem("user4"))}</td>
                 </tr>
               </tbody>
             </table>
