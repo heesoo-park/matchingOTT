@@ -29,3 +29,8 @@ class SelectOTTSerializer(serializers.Serializer):
         instance.OTTname = validated_data['OTTname', instance.OTTname]
         instance.save()
         return instance
+
+class GroupMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['user1ID','user2ID','user3ID','user4ID']

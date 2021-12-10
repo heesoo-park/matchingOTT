@@ -26,7 +26,7 @@ export default function SelectPage() {
     console.log(typeof username);
     axios
       .post("http://localhost:8000/api/select/", {
-        userID: username,
+        userID: JSON.parse(localStorage.getItem("name")),
         OTTname: OTTname,
       })
       .then(function (res) {

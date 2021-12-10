@@ -13,14 +13,15 @@ export default function GroupPage() {
     console.log(JSON.parse(localStorage.getItem("name")));
 
     axios
-      .get("http://localhost:8000/api/select/", {
+      .get("http://localhost:8000/api/getGroupMember/", {
         params: {
           userID: JSON.parse(localStorage.getItem("name")),
         },
       })
       .then(function (res) {
-        setUsername(username.concat(res.data));
-        console.log(username);
+        // setUsername(username.concat(res.data));
+        // console.log(username);
+        console.log(res.data);
       });
     return () => {
       console.log("컴포넌트가 화면에서 사라짐");
@@ -32,6 +33,8 @@ export default function GroupPage() {
   const handleFormGroupOut = (event) => {
     event.preventDefault();
     localStorage.removeItem("OTT");
+    console.log(JSON.parse(localStorage.getItem("name")));
+    
     window.location.replace("/");
   };
 
