@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 
 export default function SelectPage() {
   const [username, setUsername] = useState("");
   const [OTTname, setOTTname] = useState("");
-  const [isAttended, setIsAttended] = useState(true);
-  const [currentGroup, setCurrentGroup] = useState(0);
 
   const OTTLogoImage = {
     NETFLIX:
@@ -39,7 +36,7 @@ export default function SelectPage() {
   return (
     <div>
       {/* 상단 바 시작 */}
-      <Header LoginState={true} AttendState={isAttended} />
+      <Header />
       {/* 상단바 끝 */}
 
       {/* 본문 시작 */}

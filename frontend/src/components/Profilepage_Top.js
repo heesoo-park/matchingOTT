@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import validation from "./LoginComponent/validation";
 import Header from "./Header";
 
 // 프로필 화면은 자기꺼만 보여줘야함

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import surf from "./MainPage.jpg";
 
-export default function MainPage(props) {
-  const [isLogin, setisLogin] = useState(false);
-  const [isAttend, setisAttend] = useState(false);
-
-  console.log(props.location.state);
+export default function MainPage() {
+  const [isLogin, setisLogin] = useState(
+    () => JSON.parse(localStorage.getItem("name")) || 0
+  );
 
   return (
     <div>
@@ -28,7 +27,7 @@ export default function MainPage(props) {
               <button className="submit">
                 {" "}
                 <a
-                  href="/login"
+                  href="/selectOTT"
                   style={{
                     fontFamily: "GmarketSansLight",
                     fontSize: "20px",
@@ -44,7 +43,7 @@ export default function MainPage(props) {
               <button className="submit">
                 {" "}
                 <a
-                  href="/selectOTT"
+                  href="/login"
                   style={{
                     fontFamily: "GmarketSansLight",
                     fontSize: "20px",

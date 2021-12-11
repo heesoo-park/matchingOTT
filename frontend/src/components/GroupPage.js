@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 
 export default function GroupPage() {
-  const [numOfUser, setNumOfUser] = useState(0);
-  const [groupid, setGroupid] = useState("");
   const [OTTname, setOTTname] = useState("");
-  let username1 = "";
-  let username2 = "";
-  let username3 = "";
-  let username4 = "";
 
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem("name")));
@@ -23,7 +16,6 @@ export default function GroupPage() {
       })
       .then(function (res) {
         console.log(res.data);
-        console.log(username1);
         window.localStorage.setItem("user1", JSON.stringify(res.data.user1ID));
         window.localStorage.setItem("user2", JSON.stringify(res.data.user2ID));
         window.localStorage.setItem("user3", JSON.stringify(res.data.user3ID));

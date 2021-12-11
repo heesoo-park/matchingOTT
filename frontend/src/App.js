@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import GroupPage from "./components/GroupPage";
 import LoginPage from "./components/LoginPage";
 import MainPage from "./components/MainPage";
@@ -13,27 +13,9 @@ export default function App() {
   const [is_active, setis_active] = useState(
     () => JSON.parse(localStorage.getItem("name")) || 0
   );
-  const [isAttend, setisAttend] = useState();
-  var checkUser = localStorage.getItem("name");
 
   return (
     <BrowserRouter>
-      <div style={{ padding: 20, border: "5px solid gray" }}>
-        레이아웃 구성확인용
-        <br />
-        <Link to={{ pathname: "/", state: is_active }}>홈</Link>
-        <br />
-        <Link to="/login">로그인</Link>
-        <br />
-        <Link to="/selectOTT">OTT선택</Link>
-        <br />
-        <Link to="/Grouppage">그룹페이지</Link>
-        <br />
-        <Link to="/profile_top">프로필화면</Link>
-        <br />
-        <Link to="/signup">회원가입</Link>
-        <br />
-      </div>
       <div>
         <Switch>
           <Route exact path="/" component={MainPage} />
