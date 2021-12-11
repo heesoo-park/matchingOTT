@@ -34,6 +34,54 @@ class DetailGroupView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+def index(request):
+    if request.method == 'GET':
+        myid = request.GET['userID']
+
+        myprofile = User.objects.get(userID=myid)
+        mygroupid = myprofile.groupID
+
+        mygroup = Group.objects.get(id=mygroupid)
+        users = []
+        users.append(mygroup.user1ID)
+        users.append(mygroup.user2ID)
+        users.append(mygroup.user3ID)
+        users.append(mygroup.user4ID)
+        give = {}
+        give['user1ID'] = users[0]
+        give['user2ID'] = users[1]
+        give['user3ID'] = users[2]
+        give['user4ID'] = users[3]
+        serializer = GroupMemberSerializer(give, many=True)
+        return JsonResponse(give, safe=False)
+    elif request.method == 'POST':
+        myid = request.post['userID']
+        print("내아이디:",myid)
+        myprofile = User.objects.get(userID=myid)
+        print("내프로필",myprofile)
+        mygroupid = myprofile.groupID
+        print("내그룹아디",mygroupid)
+        mygroup = Group.objects.get(id=mygroupid)
+        print("내그룹",mygroup)
+        if mygroup.user1ID == myid:
+            mygroup.user1ID = ""
+            mygroup.numOfUser -= 1
+        elif mygroup.user2ID == myid:
+            mygroup.user2ID = ""
+            mygroup.numOfUser -= 1
+        elif mygroup.user3ID == myid:
+            mygroup.user3ID = ""
+            mygroup.numOfUser -= 1
+        elif mygroup.user4ID == myid:
+            mygroup.user4ID = ""
+            mygroup.numOfUser -= 1
+
+        myprofile.groupID = "아직 그룹에 참가하지 않았습니다."
+        myprofile.OTTname = "아직 OTT를 선택하지 않았습니다."
+        myprofile.save()
+        mygroup.save()
+        return Response(status=status.HTTP_201_CREATED)
+
 def getGroup(request):
     myid = request.GET.get('userID')
 
@@ -54,34 +102,37 @@ def getGroup(request):
     serializer = GroupMemberSerializer(give, many=True)
     return JsonResponse(give, safe=False)
 
-# def groupOut(request):
-#     print(request)
-#     myid = request.POST.get('userID')
-#     print("내아이디:",myid)
-#     myprofile = User.objects.get(userID=myid)
-#     print("내프로필",myprofile)
-#     mygroupid = myprofile.groupID
-#     print("내그룹아디",mygroupid)
-#     mygroup = Group.objects.get(id=mygroupid)
-#     print("내그룹",mygroup)
-#     if mygroup.user1ID == myid:
-#         mygroup.user1ID = ""
-#         mygroup.numOfUser -= 1
-#     elif mygroup.user2ID == myid:
-#         mygroup.user2ID = ""
-#         mygroup.numOfUser -= 1
-#     elif mygroup.user3ID == myid:
-#         mygroup.user3ID = ""
-#         mygroup.numOfUser -= 1
-#     elif mygroup.user4ID == myid:
-#         mygroup.user4ID = ""
-#         mygroup.numOfUser -= 1
+def groupOut(request):
+    print(request.GET)
+    myid = request.GET.get('userID')
+    print("내아이디:",myid)
+    myprofile = User.objects.get(userID=myid)
+    print("내프로필",myprofile)
+    mygroupid = myprofile.groupID
+    print("내그룹아디",mygroupid)
+    mygroup = Group.objects.get(id=mygroupid)
+    print("내그룹",mygroup)
+    if mygroup.user1ID == myid:
+        mygroup.user1ID = ""
+        mygroup.numOfUser -= 1
+    elif mygroup.user2ID == myid:
+        mygroup.user2ID = ""
+        mygroup.numOfUser -= 1
+    elif mygroup.user3ID == myid:
+        mygroup.user3ID = ""
+        mygroup.numOfUser -= 1
+    elif mygroup.user4ID == myid:
+        mygroup.user4ID = ""
+        mygroup.numOfUser -= 1
     
-#     myprofile.groupID = "아직 그룹에 참가하지 않았습니다."
-#     myprofile.OTTname = "아직 OTT를 선택하지 않았습니다."
-#     myprofile.save()
-#     mygroup.save()
-#     return Response(status=status.HTTP_201_CREATED)
+    dic = {}
+    dic['1'] = 1
+    
+    myprofile.groupID = "아직 그룹에 참가하지 않았습니다."
+    myprofile.OTTname = "아직 OTT를 선택하지 않았습니다."
+    myprofile.save()
+    mygroup.save()
+    return JsonResponse(dic, safe=False)
 
 
 class selectOTT(APIView):

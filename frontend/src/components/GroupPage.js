@@ -36,7 +36,15 @@ export default function GroupPage() {
     event.preventDefault();
     localStorage.removeItem("OTT");
     console.log(JSON.parse(localStorage.getItem("name")));
-
+    axios
+      .get("http://localhost:8000/api/groupOut/", {
+        params: {
+          userID: JSON.parse(localStorage.getItem("name")),
+        },
+      })
+      .then(function (res) {
+        console.log(res);
+      });
     window.location.replace("/");
   };
 
