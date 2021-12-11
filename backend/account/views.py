@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 from rest_framework.views import APIView
+from django.http import JsonResponse
 
 @api_view(['GET'])
 def current_user(request):
@@ -32,6 +33,16 @@ class UserCreate(APIView):
 #     queryset = User.objects.all()
 #     serializer_class = ProfileSerializerWithToken
 
+def ottinfo(request):
+    myid = request.GET.get('userID')
+    myprofile = User.objects.get(userID=myid)
+    myott = myprofile.OTTname
+    
+    dic = {}
+    
+    dic['OTTname'] = myott
+    
+    return JsonResponse(dic, safe=False)
 
 @api_view(['GET'])
 def validate_jwt_token(request):

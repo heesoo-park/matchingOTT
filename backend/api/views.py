@@ -145,6 +145,7 @@ class selectOTT(APIView):
         serializer = SelectOTTSerializer(data=request.data)
         
         if serializer.is_valid():
+            print(serializer.data)
             myuserid = serializer.data['userID']
             ottname = serializer.data['OTTname']
             

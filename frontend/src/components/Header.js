@@ -22,7 +22,7 @@ export default function Header({ LoginState, AttendState }) {
       })
       .then(function (res) {
         console.log(res.data);
-        if (res.data.OTTname != "") {
+        if (res.data.OTTname != "아직 OTT를 선택하지 않았습니다.") {
           window.localStorage.setItem("OTT", JSON.stringify(res.data.OTTname));
         }
       });
