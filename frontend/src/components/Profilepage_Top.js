@@ -7,17 +7,6 @@ import Header from "./Header";
 // 프로필 화면은 자기꺼만 보여줘야함
 const customer = {
   profileImage: "https://placeimg.com/150/150/1",
-  userName: "서시대생서명교",
-  OTTName: "WATCHA",
-  groupID: 1,
-  userID: "devouring123",
-  userPassword: "asdf1234",
-  realName: "서명교",
-  registrationNumber: "9808231234567",
-  phoneNum: "01077434495",
-  mailAddress: "devouring123@gmail.com",
-  sex: "Male",
-  job: "Student",
 };
 
 const OTTLogoImage = {
@@ -25,14 +14,8 @@ const OTTLogoImage = {
   WATCHA:
     "https://upload.wikimedia.org/wikipedia/commons/b/b8/%EC%99%93%EC%B1%A0_%EB%A1%9C%EA%B3%A0_2021.png",
   WAVVE: "https://www.gcon.or.kr/fileDownload?titleId=9992&fileId=2",
-};
-
-const Profile = {
-  payment:
-    "https://ecommercenews.eu/wp-content/uploads/2013/06/most_common_payment_methods_in_europe.png",
-  management: "http://simpleicon.com/wp-content/uploads/pencil.png",
-  logout:
-    "https://cdn.icon-icons.com/icons2/2943/PNG/512/logout_icon_184025.png",
+  TVING:
+    "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/TVING_logo.svg/512px-TVING_logo.svg.png",
 };
 
 // 이름 설정
@@ -101,6 +84,14 @@ class ProfilePage_Top extends Component {
                     alt="WATCHA Logo Image"
                   />
                 ) : JSON.parse(localStorage.getItem("OTT")) === "WAVVE" ? (
+                  <img
+                    style={{ display: "inline-block" }}
+                    width={350}
+                    height={300 / 3}
+                    src={OTTLogoImage.WAVVE}
+                    alt="WAVVE Logo Image"
+                  />
+                ) : JSON.parse(localStorage.getItem("OTT")) === "TVING" ? (
                   <img
                     style={{ display: "inline-block" }}
                     width={350}

@@ -8,10 +8,6 @@ import SelectPage from "./components/SelectPage";
 import PrivateRoute from "./routers/PrivateRoute";
 import PublicRoute from "./routers/PublicRoute";
 import Signup from "./components/Signup";
-// import ProfilePage_Payment from "./components/ProfileComponents/ProfilePage_Payment";
-// import ProfilePage_Management from "./components/ProfileComponents/ProfilePage_Management";
-// import AdminPage_Top from "./components/AdminPage_Top";
-// import AdminRoute from "./routers/AdminRoute";
 
 export default function App() {
   const [is_active, setis_active] = useState(
@@ -19,19 +15,6 @@ export default function App() {
   );
   const [isAttend, setisAttend] = useState();
   var checkUser = localStorage.getItem("name");
-  //console.log(is_active);
-
-  useEffect(() => {
-    if (checkUser != null) {
-      setis_active(true);
-    } else {
-      setis_active(false);
-    }
-    return () => {
-      //console.log(is_active);
-      //console.log("현재 페이지에서 벗어남");
-    };
-  });
 
   return (
     <BrowserRouter>

@@ -35,6 +35,10 @@ export default function GroupPage() {
   const handleFormGroupOut = (event) => {
     event.preventDefault();
     localStorage.removeItem("OTT");
+    localStorage.removeItem("user1");
+    localStorage.removeItem("user2");
+    localStorage.removeItem("user3");
+    localStorage.removeItem("user4");
     console.log(JSON.parse(localStorage.getItem("name")));
     axios
       .get("http://localhost:8000/api/groupOut/", {

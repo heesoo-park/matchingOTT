@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import "./Font.css";
+import axios from "axios";
 
 export default function Header({ LoginState, AttendState }) {
   const [isActive, setisActive] = useState(
@@ -11,6 +12,21 @@ export default function Header({ LoginState, AttendState }) {
   const [isAttend, setisAttend] = useState(
     () => JSON.parse(localStorage.getItem("OTT")) || 0
   );
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/account/ottinfo/", {
+        params: {
+          userID: JSON.parse(localStorage.getItem("name")),
+        },
+      })
+      .then(function (res) {
+        console.log(res.data);
+        if (res.data.OTTname != "") {
+          window.localStorage.setItem("OTT", JSON.stringify(res.data.OTTname));
+        }
+      });
+  }, []);
 
   const handleFormLogout = (event) => {
     event.preventDefault();

@@ -32,7 +32,7 @@ const LoginForm = ({ submitForm }) => {
 
         if (check == 200) {
           localStorage.setItem("name", JSON.stringify(values.ID));
-          localStorage.setItem("OTT", JSON.stringify(res.data.OTTname));
+          //localStorage.setItem("OTT", JSON.stringify(res.data.OTTname));
           setErrors(validation(values));
           setDataIsCorret(true);
           window.location.replace("/");
