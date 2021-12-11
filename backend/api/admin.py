@@ -2,11 +2,15 @@ from django.contrib import admin
 from .models import Group
 
 class GroupAdmin(admin.ModelAdmin):
-        list_display = ('id','numOfUser', 'confirm')
+        list_display = ('id', 'numOfUser', 'OTTname', 'confirm', 'created_at')
         fieldsets = (
                 (None, {
                         'fields': (
-                                'id',
+
+                                'user1ID',
+                                'user2ID',
+                                'user3ID',
+                                'user4ID',
                                 'numOfUser',
                                 'confirm',
                         )
