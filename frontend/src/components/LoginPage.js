@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import LoginForm from "./LoginComponent/LoginForm";
 import LoginSuccess from "./LoginComponent/LoginSuccess";

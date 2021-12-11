@@ -25,14 +25,12 @@ const LoginForm = ({ submitForm }) => {
         password: values.password,
       })
       .then(function (res) {
-        console.log(res.data.OTTname);
         console.log(res.status);
         check = parseInt(res.status);
         console.log(check);
 
         if (check == 200) {
           localStorage.setItem("name", JSON.stringify(values.ID));
-          //localStorage.setItem("OTT", JSON.stringify(res.data.OTTname));
           setErrors(validation(values));
           setDataIsCorret(true);
           window.location.replace("/");
